@@ -5,6 +5,12 @@ const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
 const TOKEN_KEY = "whos-who-access-token";
 
+interface GameConfig {
+  genre: String
+  artists: number
+  mode: String
+}
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -20,6 +26,12 @@ export class HomeComponent implements OnInit {
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
+
+  currentConfig: GameConfig = {
+    genre: "",
+    artists: 4,
+    mode: 'easy'
+  }
 
   ngOnInit(): void {
     this.authLoading = true;
@@ -92,5 +104,14 @@ export class HomeComponent implements OnInit {
     this.mode = mode;
     console.log(this.mode);
     console.log(TOKEN_KEY);
+  }
+
+  onSubmit() {
+    this.currentConfig = {
+      genre: this.selectedGenre,
+      artists: this.artists,
+      mode: this.mode
+    }
+    console.log(this.currentConfig)
   }
 }
