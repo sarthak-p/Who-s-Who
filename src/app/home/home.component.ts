@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
   selectedGenre: String = "";
+  artists: number = 4;
+  mode: String = 'easy';
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
@@ -58,7 +60,7 @@ export class HomeComponent implements OnInit {
     // });
     // console.log(response);
     // #################################################################################
-    
+
     this.genres = [
       "rock",
       "rap",
@@ -77,6 +79,18 @@ export class HomeComponent implements OnInit {
   setGenre(selectedGenre: any) {
     this.selectedGenre = selectedGenre;
     console.log(this.selectedGenre);
+    console.log(TOKEN_KEY);
+  }
+
+  setArtists(artists: any) {
+    this.artists = artists;
+    console.log(this.artists);
+    console.log(TOKEN_KEY);
+  }
+
+  setMode(mode: any) {
+    this.mode = mode;
+    console.log(this.mode);
     console.log(TOKEN_KEY);
   }
 }

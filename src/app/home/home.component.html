@@ -5,7 +5,7 @@
   <form class="form-box">
     <div class="form-row">
 <label for="genre">Choose Genre </label>
-  <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)" class="input-style">
+  <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)" name="genre" class="input-style">
     <option disabled [value]="null" selected></option>
     <option [value]="genre" *ngFor="let genre of genres">
       {{ genre }}
@@ -13,15 +13,15 @@
   </select></div>
   <div class="form-row">
   <label for="artists">Choose No. of Artist Choices per Question</label>
-  <select name="artists" class="input-style">
+  <select [(ngModel)]="artists" (ngModelChange)="setArtists($event)" name="artists" class="input-style">
     <option disabled [value]="null" selected></option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
+    <option value=2>2</option>
+    <option value=3>3</option>
+    <option value=4>4</option>
   </select></div>
   <div class="form-row">
     <label for="mode">Choose Game Mode</label>
-    <select name="mode" class="input-style">
+    <select [(ngModel)]="mode" (ngModelChange)="setMode($event)" name="mode" class="input-style">
       <option disabled [value]="null" selected></option>
       <option value="easy">Easy</option>
       <option value="hard">Hard</option>
