@@ -6,12 +6,14 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { EasyModeComponent } from './easy-mode/easy-mode.component';
+import { HardModeComponent } from './hard-mode/hard-mode.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    EasyModeComponent
+    EasyModeComponent,
+    HardModeComponent
   ],
   imports: [
     BrowserModule, 

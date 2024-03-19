@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { SpotifyTrack } from '../spotify-track-model';
 import { SpotifyService } from 'src/services/spotify-service';
 import { GameConfigService } from 'src/services/GameConfigService';
-import { SpotifyTrack } from '../spotify-track-model';
-
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-easy-mode',
-  templateUrl: './easy-mode.component.html',
-  styleUrls: ['./easy-mode.component.css']
+  selector: 'app-hard-mode',
+  templateUrl: './hard-mode.component.html',
+  styleUrls: ['./hard-mode.component.css']
 })
-export class EasyModeComponent implements OnInit {
+export class HardModeComponent implements OnInit {
+
   tracks: SpotifyTrack[] = [];
   currentTrackIndex: number = 0;
   currentTrack?: SpotifyTrack;
   artistOptions: string[] = [];
   score: number = 0;
-  attempts: number = 0;
   totalOptions: number = 4;
 
   constructor(
@@ -55,7 +54,6 @@ export class EasyModeComponent implements OnInit {
     }
     this.currentTrack = this.tracks[this.currentTrackIndex];
     this.prepareOptions();
-    this.attempts = 0;
   }
 
   prepareOptions(): void {
@@ -83,19 +81,10 @@ export class EasyModeComponent implements OnInit {
     if (!this.currentTrack) return;
 
     if (option === this.currentTrack.artists[0].name) {
-      alert('Correct!');
       this.score++;
-      this.attempts = 0;
-      this.moveToNextTrack();
-    } else {
-      this.attempts++;
-      if (this.attempts < 2) {
-        alert('Incorrect. Try again.');
-      } else {
-        alert('Incorrect. Moving to the next question.');
-        this.moveToNextTrack();
-      }
     }
+      this.moveToNextTrack();
+    
   }
 
   moveToNextTrack(): void {
@@ -118,4 +107,5 @@ export class EasyModeComponent implements OnInit {
     }
     return array;
   }
+
 }

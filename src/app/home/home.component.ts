@@ -107,6 +107,6 @@ export class HomeComponent implements OnInit {
       mode: this.mode,
     };
     this.gameConfigService.setConfig(config);
-    this.router.navigate(['/easy-mode']);
+    this.router.navigate([`/${this.mode}-mode`]);
   }
 }

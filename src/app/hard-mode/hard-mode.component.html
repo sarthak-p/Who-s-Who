@@ -1,0 +1,14 @@
+
+<div class="container">
+    <div class="track-info">
+        <div class="audio-player-container">
+            <audio controls autoplay [src]="" class="audio-player"></audio>
+        </div>
+        <div class="options">
+            <button *ngFor="let artistOption of artistOptions" (click)="guess(artistOption)" class="artist-option">
+                {{ artistOption }}
+            </button>
+        </div>
+
+    </div>
+</div>
