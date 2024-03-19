@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GameConfigService } from 'src/services/GameConfigService';
 
 interface PlayerScore {
   name: string;
@@ -16,13 +17,25 @@ export class EndGameComponent implements OnInit {
   resultMessage: string = '';
   playerName: string = '';
   showForm: boolean = true;
+  mode: string = '';
 
-  constructor(private router: Router) {}
+  constructor( private gameConfigService: GameConfigService, private router: Router) {}
 
   ngOnInit(): void {
     this.score = history.state?.score || 0;
     this.resultMessage = this.score >= 3 ? 'Congratulations, you won!' : 'Sorry, you lost.';
   }
+
+  playAgain(): void {
+    const config = this.gameConfigService.getConfig();
+
+    if (config) {
+      this.router.navigate([`/${config.mode}-mode`]);
+    } else {
+      console.error("No configuration found.");
+    }
+  }
+
 
   submitName(name: string): void {
   name = name.trim();
@@ -39,5 +52,6 @@ export class EndGameComponent implements OnInit {
   scores.push(newScore);
   scores = scores.sort((a, b) => b.score - a.score).slice(0, 10);
   localStorage.setItem('leaderboard', JSON.stringify(scores));
+
 }
 }

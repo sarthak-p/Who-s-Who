@@ -14,4 +14,8 @@ export class GameConfigService {
   setConfig(config: GameConfig) {
     this.configSource.next(config);
   }
+
+  getConfig(): GameConfig | null {
+    return this.configSource.getValue();
+  }
 }

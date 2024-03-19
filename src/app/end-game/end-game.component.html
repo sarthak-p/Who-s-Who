@@ -7,7 +7,7 @@
     </div>
     <div *ngIf="!showForm" class="submitted-message">Submitted to Leaderboard ✔</div>
     <div>
-        <button class="big-button" routerLink="">Play Again!</button>
+        <button class="big-button" (click)="playAgain()">Play Again!</button>
     </div>
     <div class="button-container">
         <button class="link-button" routerLink="/leaderboard">Leaderboard</button>
