@@ -15,6 +15,7 @@ export class EndGameComponent implements OnInit {
   score: number = 0;
   resultMessage: string = '';
   playerName: string = '';
+  showForm: boolean = true;
 
   constructor(private router: Router) {}
 
@@ -25,6 +26,8 @@ export class EndGameComponent implements OnInit {
 
   submitName(name: string): void {
   name = name.trim();
+  this.playerName = '';
+  this.showForm = false;
 
   if (!name) {
     alert('Please enter your name.');

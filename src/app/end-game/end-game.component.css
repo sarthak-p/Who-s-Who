@@ -95,3 +95,7 @@ button:hover {
     background-color: #007bff;
     color: white;
 }
+
+.submitted-message {
+    font-size: 1.5em;
+}
