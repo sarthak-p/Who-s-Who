@@ -1,8 +1,15 @@
-<div class="container"> 
+<div class="container">
     <h1>{{ resultMessage }}</h1>
     <p>Your score is {{ score }}/5</p>
-    <div>
+    <div class="input-container">
         <input type="text" [(ngModel)]="playerName" placeholder="Enter your name" />
-        <button (click)="submitName(playerName)">Submit</button>
+        <button class="submit-button" (click)="submitName(playerName)">Submit</button>
+    </div>
+    <div>
+        <button class="big-button" routerLink="">Play Again!</button>
+    </div>
+    <div class="button-container">
+        <button class="link-button" routerLink="/leaderboard">Leaderboard</button>
+        <button class="link-button" routerLink="/home">Home</button>
     </div>
 </div>

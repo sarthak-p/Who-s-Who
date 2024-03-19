@@ -28,7 +28,7 @@ export class EndGameComponent implements OnInit {
 
   if (!name) {
     alert('Please enter your name.');
-    return; 
+    return;
   }
 
   const newScore: PlayerScore = { name, score: this.score };
@@ -36,6 +36,5 @@ export class EndGameComponent implements OnInit {
   scores.push(newScore);
   scores = scores.sort((a, b) => b.score - a.score).slice(0, 10);
   localStorage.setItem('leaderboard', JSON.stringify(scores));
-  this.router.navigate(['/home']);
 }
 }
