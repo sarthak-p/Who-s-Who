@@ -1,0 +1,8 @@
+<div class="container">
+    <h1>{{ resultMessage }}</h1>
+    <p>Your score is {{ score }}/5</p>
+    <div>
+        <input type="text" [(ngModel)]="playerName" placeholder="Enter your name" />
+        <button (click)="submitName(playerName)">Submit</button>
+    </div>
+</div>

@@ -7,13 +7,15 @@ import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { EasyModeComponent } from './easy-mode/easy-mode.component';
 import { HardModeComponent } from './hard-mode/hard-mode.component';
+import { EndGameComponent } from './end-game/end-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     EasyModeComponent,
-    HardModeComponent
+    HardModeComponent,
+    EndGameComponent
   ],
   imports: [
     BrowserModule, 
