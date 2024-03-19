@@ -84,7 +84,7 @@ export class HardModeComponent implements OnInit {
       this.score++;
     }
       this.moveToNextTrack();
-    
+
   }
 
   moveToNextTrack(): void {
@@ -97,8 +97,10 @@ export class HardModeComponent implements OnInit {
   }
 
   endGame(): void {
-    alert(`Game Over! Your score: ${this.score}`);
+    this.router.navigate(['/end-game'], { state: { score: this.score } });
+    this.resetGameState();
   }
+
 
   shuffleArray(array: any[]): any[] {
     for (let i = array.length - 1; i > 0; i--) {
@@ -108,4 +110,17 @@ export class HardModeComponent implements OnInit {
     return array;
   }
 
+
+resetGameState(): void {
+  this.currentTrackIndex = 0;
+  this.score = 0;
+  this.gameConfigService.currentConfig.subscribe(config => {
+    if (config && config.genre) {
+      this.totalOptions = config.artists || this.totalOptions;
+    } else {
+      console.warn('No game configuration found.');
+      this.router.navigate(['/']);
+    }
+  });
+}
 }
