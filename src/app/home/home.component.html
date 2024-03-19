@@ -12,7 +12,7 @@
     </option>
   </select></div>
   <div class="form-row">
-  <label for="artists">Choose No. of Artist Choices per Question</label>
+  <label for="artists">Choose No. of Artist Options</label>
   <select [(ngModel)]="artists" (ngModelChange)="setArtists($event)" name="artists" class="input-style">
     <option disabled [value]="null" selected></option>
     <option value=3>3</option>

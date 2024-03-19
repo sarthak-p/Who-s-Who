@@ -1,10 +1,10 @@
 .leaderboard-container {
+    background-color: #1DB954;
     display: flex;
     flex-direction: column;
     border: 2px solid black;
     padding: 20px 50px;
     text-align: center;
-    background-color: white;
     font-size: 1.5em;
     color: black;
     border-radius: 10px;

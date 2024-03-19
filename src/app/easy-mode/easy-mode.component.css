@@ -1,18 +1,36 @@
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+}
+
+.page-content h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: green;
+    color: black;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
 }
 
 .track-info {
     display: flex;
+    background-color: green;
     flex-direction: column;
-    border: 2px solid black;
     padding: 20px 50px;
     text-align: center;
-    background-color: white;
     font-size: 1.5em;
     color: black;
     border-radius: 10px;
