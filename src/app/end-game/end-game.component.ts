@@ -1,4 +1,3 @@
-// end-game.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -25,11 +24,18 @@ export class EndGameComponent implements OnInit {
   }
 
   submitName(name: string): void {
-    const newScore: PlayerScore = { name, score: this.score };
-    let scores: PlayerScore[] = JSON.parse(localStorage.getItem('leaderboard') || '[]');
-    scores.push(newScore);
-    scores = scores.sort((a, b) => b.score - a.score).slice(0, 10); 
-    localStorage.setItem('leaderboard', JSON.stringify(scores));
-    this.router.navigate(['/home']);
+  name = name.trim();
+
+  if (!name) {
+    alert('Please enter your name.');
+    return; 
   }
+
+  const newScore: PlayerScore = { name, score: this.score };
+  let scores: PlayerScore[] = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+  scores.push(newScore);
+  scores = scores.sort((a, b) => b.score - a.score).slice(0, 10);
+  localStorage.setItem('leaderboard', JSON.stringify(scores));
+  this.router.navigate(['/home']);
+}
 }

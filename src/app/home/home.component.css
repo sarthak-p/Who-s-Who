@@ -74,3 +74,13 @@
     font-size: 1.15em;
 
 }
+
+.submit-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.link-button:hover {
+    background-color: #007bff;
+    color: white;
+}

@@ -41,4 +41,6 @@ li {
 
 .button-container button:hover {
     cursor: pointer;
+    background-color: #007bff;
+    color: white;
 }
