@@ -9,6 +9,7 @@
     color: black;
     border-radius: 10px;
     width: 80%;
+    background-color: #1DB954;
    }
 
 
@@ -73,4 +74,14 @@
     color: black;
     font-size: 1.15em;
 
+}
+
+.submit-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.link-button:hover {
+    background-color: #007bff;
+    color: white;
 }

@@ -109,4 +109,8 @@ export class HomeComponent implements OnInit {
     this.gameConfigService.setConfig(config);
     this.router.navigate([`/${this.mode}-mode`]);
   }
+
+  goToLeaderboard(): void {
+    this.router.navigate(['/leaderboard']);
+  }
 }
