@@ -1,0 +1,15 @@
+<div class="container">
+    <div *ngIf="currentTrack" class="track-info">
+        <div *ngIf="currentTrack.preview_url" class="audio-player-container">
+            <audio controls [src]="currentTrack.preview_url" class="audio-player"></audio>
+        </div>
+        <div *ngIf="currentTrack.imageUrl" class="album-cover">
+            <img [src]="currentTrack.imageUrl" alt="Album Cover">
+        </div>
+        <div class="options">
+            <button *ngFor="let artistOption of artistOptions" (click)="guess(artistOption)" class="artist-option">
+                {{ artistOption }}
+            </button>
+        </div>
+    </div>
+</div>

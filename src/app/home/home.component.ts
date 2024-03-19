@@ -1,15 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
+import { Router } from '@angular/router';
+import { GameConfigService } from "src/services/GameConfigService";
+import { GameConfig } from 'src/app/game-config-model';
+
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
 const TOKEN_KEY = "whos-who-access-token";
 
-interface GameConfig {
-  genre: String
-  artists: number
-  mode: String
-}
 
 @Component({
   selector: "app-home",
@@ -17,21 +16,16 @@ interface GameConfig {
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
-
-  genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
-  selectedGenre: String = "";
+  genres: string[] = ["House", "Alternative", "J-Rock", "R&B"]; // Use primitive string type
+  selectedGenre: string = "";
   artists: number = 4;
-  mode: String = 'easy';
+  mode: string = 'easy';
   authLoading: boolean = false;
   configLoading: boolean = false;
   token: String = "";
 
-  currentConfig: GameConfig = {
-    genre: "",
-    artists: 4,
-    mode: 'easy'
-  }
+  constructor(private gameConfigService: GameConfigService, private router: Router) { }
+
 
   ngOnInit(): void {
     this.authLoading = true;
@@ -107,11 +101,12 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.currentConfig = {
+    const config: GameConfig = {
       genre: this.selectedGenre,
       artists: this.artists,
-      mode: this.mode
-    }
-    console.log(this.currentConfig)
+      mode: this.mode,
+    };
+    this.gameConfigService.setConfig(config);
+    this.router.navigate(['/easy-mode']);
   }
 }
