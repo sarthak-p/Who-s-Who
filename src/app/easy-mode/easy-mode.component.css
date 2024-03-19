@@ -18,7 +18,7 @@
     align-items: center;
     border: 2px solid black;
     padding: 20px;
-    background-color: green;
+    background-color: #1DB954;    
     color: black;
     border-radius: 10px;
     width: 80%;
@@ -27,7 +27,7 @@
 
 .track-info {
     display: flex;
-    background-color: green;
+    background-color: #1DB954;
     flex-direction: column;
     padding: 20px 50px;
     text-align: center;
