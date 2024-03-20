@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private gameConfigService: GameConfigService, private router: Router) { }
 
-
   ngOnInit(): void {
     this.authLoading = true;
     const storedTokenString = localStorage.getItem(TOKEN_KEY);
@@ -68,17 +67,18 @@ export class HomeComponent implements OnInit {
     // #################################################################################
 
     this.genres = [
+      "pop",
+      "hip hop",
+      "r&b",
       "rock",
       "rap",
-      "pop",
+      "indie",
       "country",
-      "hip-hop",
-      "jazz",
-      "alternative",
-      "j-pop",
+      "edm",
+      "latin pop",
       "k-pop",
-      "emo"
     ]
+
     this.configLoading = false;
   };
 

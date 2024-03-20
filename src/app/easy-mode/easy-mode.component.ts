@@ -100,7 +100,7 @@ export class EasyModeComponent implements OnInit {
     if (!this.currentTrack) return;
 
     if (option === this.currentTrack.artists[0].name) {
-      this.feedbackMessage = 'Correct! Moving to the next question.';
+      this.feedbackMessage = 'Correct!';
       this.score++;
       setTimeout(() => this.moveToNextTrack(), 800)
     } else {
