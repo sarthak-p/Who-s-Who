@@ -19,6 +19,7 @@ interface SpotifyTrack {
   
 export class EasyModeComponent implements OnInit {
   tracks: SpotifyTrack[] = [];
+  playedTracks = new Set<string>();
   currentTrackIndex: number = 0;
   currentTrack?: SpotifyTrack;
   artistOptions: string[] = [];
@@ -36,10 +37,11 @@ export class EasyModeComponent implements OnInit {
     this.resetGameState();
     this.gameConfigService.currentConfig.subscribe(config => {
       if (config && config.genre) {
-        this.totalOptions = config.artists || this.totalOptions; 
+        this.totalOptions = config.artists || this.totalOptions;
         this.spotifyService.fetchTracksByGenre(config.genre).subscribe({
           next: (tracks) => {
-            this.tracks = tracks.filter(track => track.preview_url && this.isValidArtistName(track.artists[0].name));
+            this.tracks = tracks.filter(track => track.preview_url && this.isValidArtistName(track.artists[0].name) && !this.playedTracks.has(track.id));
+            this.shuffleArray(this.tracks); 
             this.loadTrack();
           },
           error: (error) => console.error('Error fetching tracks:', error),
@@ -52,26 +54,26 @@ export class EasyModeComponent implements OnInit {
   }
 
   loadTrack(): void {
-    if (this.currentTrackIndex >= 5) {
+    if (this.currentTrackIndex >= this.tracks.length || this.currentTrackIndex >= 5) {
       this.endGame();
       return;
     }
     this.currentTrack = this.tracks[this.currentTrackIndex];
+    this.playedTracks.add(this.currentTrack.id); 
     this.prepareOptions();
-    this.attempts = 0; 
+    this.attempts = 0;
   }
 
   prepareOptions(): void {
     if (!this.currentTrack) return;
 
     let options = [this.currentTrack.artists[0].name];
-
     let potentialOptions = this.tracks
-      .filter(track => track.id !== this.currentTrack!.id && track.preview_url)
+      .filter(track => track.id !== this.currentTrack!.id && !this.playedTracks.has(track.id))
       .map(track => track.artists[0].name)
       .filter(name => this.isValidArtistName(name));
 
-    potentialOptions = [...new Set(potentialOptions)]; 
+    potentialOptions = [...new Set(potentialOptions)];
 
     while (options.length < this.totalOptions && potentialOptions.length > 0) {
       const randomIndex = Math.floor(Math.random() * potentialOptions.length);
@@ -81,12 +83,13 @@ export class EasyModeComponent implements OnInit {
       }
     }
 
-    this.artistOptions = this.shuffleArray(options); 
+    this.artistOptions = this.shuffleArray(options);
   }
 
   isValidArtistName(name: string): boolean {
     return !name.toLowerCase().includes("playlist") && name.length < 50;
   }
+
 
   guess(option: string): void {
     if (!this.currentTrack) return;
@@ -133,6 +136,7 @@ export class EasyModeComponent implements OnInit {
     this.currentTrackIndex = 0;
     this.score = 0;
     this.attempts = 0;
+    this.playedTracks.clear();
     this.gameConfigService.currentConfig.subscribe(config => {
       if (config && config.genre) {
         this.totalOptions = config.artists || this.totalOptions;

@@ -13,7 +13,7 @@ export class SpotifyService {
 
   fetchTracksByGenre(genre: string): Observable<any[]> {
     const token = this.getToken();
-    const searchUrl = `${this.baseUrl}/search?q=genre:"${encodeURIComponent(genre)}"&type=track&limit=10`;
+    const searchUrl = `${this.baseUrl}/search?q=genre:"${encodeURIComponent(genre)}"&type=track&limit=50`;
     return this.http.get<any>(searchUrl, {
       headers: { Authorization: `Bearer ${token}` }
     }).pipe(
