@@ -26,6 +26,7 @@ export class EasyModeComponent implements OnInit {
   score: number = 0;
   attempts: number = 0;
   totalOptions: number = 4; 
+  feedbackMessage: string = ''; 
 
   constructor(
     private spotifyService: SpotifyService,
@@ -54,6 +55,7 @@ export class EasyModeComponent implements OnInit {
   }
 
   loadTrack(): void {
+    this.feedbackMessage = '';
     if (this.currentTrackIndex >= this.tracks.length || this.currentTrackIndex >= 5) {
       this.endGame();
       return;
@@ -62,6 +64,9 @@ export class EasyModeComponent implements OnInit {
     this.playedTracks.add(this.currentTrack.id); 
     this.prepareOptions();
     this.attempts = 0;
+    if (this.currentTrack) {
+      this.gameConfigService.addPlayedTrack(this.currentTrack.id);
+    }
   }
 
   prepareOptions(): void {
@@ -95,21 +100,22 @@ export class EasyModeComponent implements OnInit {
     if (!this.currentTrack) return;
 
     if (option === this.currentTrack.artists[0].name) {
-      alert('Correct!');
+      this.feedbackMessage = 'Correct! Moving to the next question.';
       this.score++;
-      this.moveToNextTrack();
+      setTimeout(() => this.moveToNextTrack(), 800)
     } else {
       this.attempts++;
       if (this.attempts < 2) {
-        alert('Incorrect. Try again.');
+        this.feedbackMessage = 'Incorrect. Try again.';
       } else {
-        alert('Incorrect. Moving to the next question.');
-        this.moveToNextTrack();
+        this.feedbackMessage = 'Incorrect. Moving to the next question.';
+        setTimeout(() => this.moveToNextTrack(), 800);
       }
     }
   }
 
   moveToNextTrack(): void {
+    this.feedbackMessage = '';
     this.attempts = 0;
     this.currentTrackIndex++;
     if (this.currentTrackIndex < 5) {

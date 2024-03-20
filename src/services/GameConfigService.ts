@@ -6,16 +6,27 @@ import { GameConfig } from 'src/app/game-config-model';
   providedIn: 'root',
 })
 export class GameConfigService {
-  private configSource = new BehaviorSubject<GameConfig | null>(null);
-  currentConfig = this.configSource.asObservable();
+    private configSource = new BehaviorSubject<GameConfig | null>(null);
+    currentConfig = this.configSource.asObservable();
+    private playedTracks = new Set<string>();
+
 
   constructor() {}
 
   setConfig(config: GameConfig) {
     this.configSource.next(config);
+    this.playedTracks.clear();
   }
 
   getConfig(): GameConfig | null {
     return this.configSource.getValue();
+  }
+    
+addPlayedTrack(trackId: string) {
+    this.playedTracks.add(trackId);
+  }
+
+  getPlayedTracks(): Set<string> {
+    return this.playedTracks;
   }
 }

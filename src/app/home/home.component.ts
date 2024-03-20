@@ -16,7 +16,7 @@ const TOKEN_KEY = "whos-who-access-token";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  genres: string[] = ["House", "Alternative", "J-Rock", "R&B"]; // Use primitive string type
+  genres: string[] = ["House", "Alternative", "J-Rock", "R&B"];
   selectedGenre: string = "";
   artists: number = 4;
   mode: string = 'easy';

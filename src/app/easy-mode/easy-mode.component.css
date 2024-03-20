@@ -68,3 +68,9 @@
     background-color: #007bff;
     color: white;
 }
+
+.feedback-message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: yellow;
+}
