@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameConfigService } from 'src/services/GameConfigService';
+import { GameConfigService } from 'src/services/game-config-service';
 
 interface PlayerScore {
   name: string;

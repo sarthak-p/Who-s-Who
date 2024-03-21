@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
 import { Router } from '@angular/router';
-import { GameConfigService } from "src/services/GameConfigService";
+import { GameConfigService } from "src/services/game-config-service";
 import { GameConfig } from 'src/app/game-config-model';
 
 
@@ -69,9 +69,9 @@ export class HomeComponent implements OnInit {
     this.genres = [
       "pop",
       "hip hop",
-      "r&b",
       "rock",
       "rap",
+      "house",
       "indie",
       "country",
       "edm",

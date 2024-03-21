@@ -1,3 +1,11 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    padding: 5px; 
+}
+
 .leaderboard-container {
     background-color: #1DB954;
     display: flex;
@@ -10,12 +18,12 @@
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
-    margin: 8% 27%;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 li {
@@ -29,14 +37,14 @@ li {
 }
 
 .button-container button {
-    width: 100%;
-    max-width: 200px;
+    min-width: 150px;
     height: 40px;
     color: black;
     background-color: white;
     border: 2px solid black;
     border-radius: 5px;
     font-size: 1.25em;
+    margin: 0 10px;
 }
 
 .button-container button:hover {

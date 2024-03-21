@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpotifyService } from 'src/services/spotify-service';
-import { GameConfigService } from 'src/services/GameConfigService';
+import { GameConfigService } from 'src/services/game-config-service';
 
 interface SpotifyTrack {
   id: string;
