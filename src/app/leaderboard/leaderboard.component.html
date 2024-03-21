@@ -1,11 +1,12 @@
 <div class="wrapper">
     <div class="leaderboard-container">
         <h2>Leaderboard</h2>
-    <ul>
-        <li *ngFor="let player of leaderboard; let i = index">
-            {{ i + 1 }}. {{ player.name }} - {{ player.score }}
-        </li>
-    </ul>
+        <ul>
+            <li *ngFor="let player of leaderboard; let i = index">
+                <div class="player-info">{{ i + 1 }}. <span class="player-name">{{ player.name }}</span> - <span
+                        class="player-score">{{ player.score }}</span></div>
+            </li>
+        </ul>
         <div class="button-container">
             <button (click)="navigateHome()">Home</button>
         </div>
