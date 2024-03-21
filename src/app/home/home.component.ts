@@ -101,13 +101,20 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
+    if(!this.selectedGenre) {
+      alert('Please select a genre.');
+      return;
+    } else {
+
     const config: GameConfig = {
       genre: this.selectedGenre,
       artists: this.artists,
       mode: this.mode,
     };
+
+
     this.gameConfigService.setConfig(config);
-    this.router.navigate([`/${this.mode}-mode`]);
+    this.router.navigate([`/${this.mode}-mode`]);}
   }
 
   goToLeaderboard(): void {
