@@ -16,7 +16,7 @@ interface SpotifyTrack {
   templateUrl: './easy-mode.component.html',
   styleUrls: ['./easy-mode.component.css']
 })
-  
+
 export class EasyModeComponent implements OnInit {
   tracks: SpotifyTrack[] = [];
   playedTracks = new Set<string>();
@@ -25,8 +25,8 @@ export class EasyModeComponent implements OnInit {
   artistOptions: string[] = [];
   score: number = 0;
   attempts: number = 0;
-  totalOptions: number = 4; 
-  feedbackMessage: string = ''; 
+  totalOptions: number = 4;
+  feedbackMessage: string = '';
 
   constructor(
     private spotifyService: SpotifyService,
@@ -42,7 +42,7 @@ export class EasyModeComponent implements OnInit {
         this.spotifyService.fetchTracksByGenre(config.genre).subscribe({
           next: (tracks) => {
             this.tracks = tracks.filter(track => track.preview_url && this.isValidArtistName(track.artists[0].name) && !this.playedTracks.has(track.id));
-            this.shuffleArray(this.tracks); 
+            this.shuffleArray(this.tracks);
             this.loadTrack();
           },
           error: (error) => console.error('Error fetching tracks:', error),
@@ -61,7 +61,7 @@ export class EasyModeComponent implements OnInit {
       return;
     }
     this.currentTrack = this.tracks[this.currentTrackIndex];
-    this.playedTracks.add(this.currentTrack.id); 
+    this.playedTracks.add(this.currentTrack.id);
     this.prepareOptions();
     this.attempts = 0;
     if (this.currentTrack) {
