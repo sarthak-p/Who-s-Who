@@ -5,6 +5,7 @@ import { GameConfigService } from 'src/services/GameConfigService';
 interface PlayerScore {
   name: string;
   score: number;
+  timestamp: number;
 }
 
 @Component({
@@ -19,7 +20,7 @@ export class EndGameComponent implements OnInit {
   showForm: boolean = true;
   mode: string = '';
 
-  constructor( private gameConfigService: GameConfigService, private router: Router) {}
+  constructor(private gameConfigService: GameConfigService, private router: Router) { }
 
   ngOnInit(): void {
     this.score = history.state?.score || 0;
@@ -38,20 +39,19 @@ export class EndGameComponent implements OnInit {
 
 
   submitName(name: string): void {
-  name = name.trim();
-  this.playerName = '';
-  this.showForm = false;
+    name = name.trim();
+    this.playerName = '';
+    this.showForm = false;
 
-  if (!name) {
-    alert('Please enter your name.');
-    return;
+    if (!name) {
+      alert('Please enter your name.');
+      return;
+    }
+
+    const newScore: PlayerScore = { name, score: this.score, timestamp: Date.now() };
+    let scores: PlayerScore[] = JSON.parse(localStorage.getItem('leaderboard') || '[]');
+    scores.push(newScore);
+    scores = scores.sort((a, b) => b.score - a.score || b.timestamp - a.timestamp).slice(0, 10);
+    localStorage.setItem('leaderboard', JSON.stringify(scores));
   }
-
-  const newScore: PlayerScore = { name, score: this.score };
-  let scores: PlayerScore[] = JSON.parse(localStorage.getItem('leaderboard') || '[]');
-  scores.push(newScore);
-  scores = scores.sort((a, b) => b.score - a.score).slice(0, 10);
-  localStorage.setItem('leaderboard', JSON.stringify(scores));
-
-}
 }

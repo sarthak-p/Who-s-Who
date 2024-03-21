@@ -14,7 +14,7 @@ export class SpotifyService {
   fetchTracksByGenre(genre: string): Observable<any[]> {
     const token = this.getToken();
     const offset = Math.floor(Math.random() * 100);
-    const searchUrl = `${this.baseUrl}/search?q=genre:"${encodeURIComponent(genre)}"&type=track&limit=50&offset=${offset}&market=US`; // Add market parameter to ensure popularity data is available
+    const searchUrl = `${this.baseUrl}/search?q=genre:"${encodeURIComponent(genre)}"&type=track&limit=50&offset=${offset}&market=US`; 
     return this.http.get<any>(searchUrl, {
       headers: { Authorization: `Bearer ${token}` }
     }).pipe(
@@ -24,8 +24,6 @@ export class SpotifyService {
       })
     );
   }
-
-
 
 
   private getToken(): string | null {

@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       "country",
       "edm",
       "latin pop",
-      "k-pop",
+      "bollywood",
     ]
 
     this.configLoading = false;

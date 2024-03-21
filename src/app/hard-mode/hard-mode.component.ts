@@ -52,7 +52,12 @@ export class HardModeComponent implements OnInit {
       this.endGame();
       return;
     }
-    this.currentTrack = this.tracks[this.currentTrackIndex];
+    const playableTracks = this.tracks.filter(track => track.preview_url);
+    this.currentTrack = playableTracks[this.currentTrackIndex];
+    if (!this.currentTrack) {
+        console.error('No playable track found.');
+        return;
+    }
     this.prepareOptions();
   }
 
