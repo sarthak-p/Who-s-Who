@@ -30,6 +30,11 @@ export class LeaderboardComponent implements OnInit {
     }
   }
 
+  clearLeaderboard(): void {
+    localStorage.removeItem('leaderboard');
+    this.leaderboard = [];
+  }
+
   navigateHome(): void {
     this.router.navigate(['/']);
   }
