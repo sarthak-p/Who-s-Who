@@ -17,6 +17,7 @@ export class HardModeComponent implements OnInit {
   artistOptions: string[] = [];
   score: number = 0;
   totalOptions: number = 4;
+  playedTracks = new Set<string>();
 
   constructor(
     private spotifyService: SpotifyService,
@@ -29,9 +30,11 @@ export class HardModeComponent implements OnInit {
       if (config) {
         this.totalOptions = config.artists;
         if (config.genre) {
+          this.playedTracks = new Set(this.gameConfigService.getPlayedTracks());
           this.spotifyService.fetchTracksByGenre(config.genre).subscribe({
             next: (tracks) => {
-              this.tracks = tracks;
+              this.tracks = tracks.filter(track => track.preview_url && !this.playedTracks.has(track.id));
+              this.shuffleArray(this.tracks);
               this.loadTrack();
             },
             error: (error) => console.error('Error fetching tracks:', error),
@@ -58,6 +61,7 @@ export class HardModeComponent implements OnInit {
         console.error('No playable track found.');
         return;
     }
+    this.playedTracks.add(this.currentTrack?.id);
     this.prepareOptions();
   }
 
@@ -102,6 +106,7 @@ export class HardModeComponent implements OnInit {
   }
 
   endGame(): void {
+    this.gameConfigService.setPlayedTracks([...this.playedTracks]);
     this.router.navigate(['/end-game'], { state: { score: this.score } });
     this.resetGameState();
   }

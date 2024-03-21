@@ -20,11 +20,16 @@ export class GameConfigService {
 
   getConfig(): GameConfig | null {
     return this.configSource.getValue();
-  }
+    }
     
-addPlayedTrack(trackId: string) {
+    addPlayedTrack(trackId: string) {
     this.playedTracks.add(trackId);
-  }
+    }
+    
+    setPlayedTracks(trackIds: string[]) {
+    this.playedTracks = new Set(trackIds);
+    }
+
 
   getPlayedTracks(): Set<string> {
     return this.playedTracks;
