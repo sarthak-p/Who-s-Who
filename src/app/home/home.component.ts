@@ -72,11 +72,11 @@ export class HomeComponent implements OnInit {
       "rock",
       "rap",
       "house",
-      "indie",
+      "pov: indie",
       "country",
-      "edm",
+      "alternative metal",
       "latin pop",
-      "bollywood",
+      "modern bollywood",
     ]
 
     this.configLoading = false;
