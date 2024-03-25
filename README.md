@@ -43,7 +43,7 @@ Additionally, you might need a Spotify Developer account to access the Spotify A
 2. Navigate to the project directory:
 
    ```bash
-   cd Who\'s Who
+   cd Who's Who
    ```
 
 3. Install the required npm packages:
