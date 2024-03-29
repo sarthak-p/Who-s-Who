@@ -14,8 +14,6 @@ Who's Who is an interactive web application built with Angular, leveraging the S
 - **Playing Modes**: Play easy or hard mode, choose your genre, and number of options.
 - **Responsive Design**: Enjoy the game on any device, thanks to a mobile-first approach.
 
-![Game Interface](images/game-interface.png)
-
 ## Built With
 
 - Angular - The web framework used
