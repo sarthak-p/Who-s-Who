@@ -57,7 +57,7 @@ Additionally, you might need a Spotify Developer account to access the Spotify A
    ng serve
    ```
 
-- Open http://localhost:4200 in your browser to view the application.
+5. Open http://localhost:4200 in your browser to view the application.
 
 ## Contributing
 
